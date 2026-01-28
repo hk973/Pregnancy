@@ -12,6 +12,9 @@ An Android application built with Jetpack Compose to help expectant mothers trac
 - **Notification Actions** - Click notifications to open directly to logging screen
 - **MVVM Architecture** - Clean, maintainable code structure
 
+
+## Demo
+![Uploading Untitled video - Made with Clipchamp.gif…]()
 ## 🏗️ Architecture
 
 This app follows **MVVM (Model-View-ViewModel)** architecture pattern:
