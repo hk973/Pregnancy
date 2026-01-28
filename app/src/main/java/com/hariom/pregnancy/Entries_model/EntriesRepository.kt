@@ -12,4 +12,8 @@ class EntriesRepository(private val dao: Entries_Dao) {
     suspend fun insertVitals(entries: Entries) {
         dao.insertVitals(entries)
     }
+
+    suspend fun deleteVitals(entryId: Int) {
+        dao.deleteVitals(entryId)
+    }
 }

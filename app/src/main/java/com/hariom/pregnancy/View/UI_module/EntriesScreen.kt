@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.hariom.pregnancy.Entries_model.Entries
 import com.hariom.pregnancy.Entries_viewModel.EntriesViewModel
 import com.hariom.pregnancy.ui.theme.ButtonPurple
 import com.hariom.pregnancy.ui.theme.LightPurple
@@ -39,6 +40,8 @@ fun EntriesScreen(
 
     val vitals by viewModel.vitalsList.collectAsState()
     var showDialog by remember { mutableStateOf(shouldOpenLoggingScreen) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var selectedEntry by remember { mutableStateOf<Entries?>(null) }
 
     Scaffold(
         topBar = {
@@ -77,7 +80,13 @@ fun EntriesScreen(
                 modifier = Modifier.padding(16.dp)
             ) {
                 items(vitals) { entry ->
-                    EntriesItem(entry)
+                    EntriesItem(
+                        entry = entry,
+                        onLongPress = {
+                            selectedEntry = entry
+                            showDeleteDialog = true
+                        }
+                    )
                 }
             }
         }
@@ -88,6 +97,20 @@ fun EntriesScreen(
                 onSubmit = { sys, dia, hr, wt, kicks ->
                     viewModel.addVitals(sys, dia, hr, wt, kicks)
                     showDialog = false
+                }
+            )
+        }
+
+        if (showDeleteDialog && selectedEntry != null) {
+            DeleteConfirmationDialog(
+                onDismiss = {
+                    showDeleteDialog = false
+                    selectedEntry = null
+                },
+                onConfirm = {
+                    selectedEntry?.let { viewModel.deleteVitals(it.id) }
+                    showDeleteDialog = false
+                    selectedEntry = null
                 }
             )
         }

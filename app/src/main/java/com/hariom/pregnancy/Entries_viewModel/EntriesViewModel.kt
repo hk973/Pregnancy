@@ -37,4 +37,10 @@ class EntriesViewModel(private val repository: EntriesRepository) : ViewModel() 
             repository.insertVitals(entry)
         }
     }
+
+    fun deleteVitals(entryId: Int) {
+        viewModelScope.launch {
+            repository.deleteVitals(entryId)
+        }
+    }
 }

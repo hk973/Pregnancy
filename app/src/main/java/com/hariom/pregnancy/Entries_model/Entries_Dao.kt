@@ -13,4 +13,7 @@ interface Entries_Dao {
 
     @Query("SELECT * FROM entries ORDER BY timestamp DESC")
     fun getAllVitals(): Flow<List<Entries>>
+
+    @Query("DELETE FROM entries WHERE id = :entryId")
+    suspend fun deleteVitals(entryId: Int)
 }

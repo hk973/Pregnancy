@@ -5,6 +5,7 @@ An Android application built with Jetpack Compose to help expectant mothers trac
 ## 📱 Features
 
 - **Vitals Logging** - Track blood pressure (systolic/diastolic), heart rate, weight, and baby kicks
+- **Delete Entries** - Long-press any entry to delete with confirmation dialog
 - **Automated Reminders** - Get notified every 5 hours to log vitals using WorkManager
 - **Local Storage** - All data stored securely using Room Database
 - **Material Design 3** - Modern, intuitive UI with Jetpack Compose
@@ -61,7 +62,8 @@ app/src/main/java/com/hariom/pregnancy/
 │   └── UI_module/
 │       ├── EntriesScreen.kt        # Main vitals list screen
 │       ├── AddEntriesDialog.kt     # Dialog for adding vitals
-│       ├── EntriesItem.kt          # List item component
+│       ├── EntriesItem.kt          # List item component with long-press
+│       ├── DeleteConfirmationDialog.kt # Delete confirmation dialog
 │       └── ReminderSettingsScreen.kt # Reminder toggle settings
 │
 └── ui/
@@ -198,9 +200,10 @@ NotificationHelper.triggerTestNotification(context)
 
 ### Main Screens
 
-1. **EntriesScreen** - Displays list of all logged vitals
+1. **EntriesScreen** - Displays list of all logged vitals with delete functionality
 2. **AddEntriesDialog** - Modal dialog for adding new vitals
-3. **ReminderSettingsScreen** - Toggle reminder on/off (optional)
+3. **DeleteConfirmationDialog** - Confirmation dialog for deleting entries
+4. **ReminderSettingsScreen** - Toggle reminder on/off (optional)
 
 ### Theme
 
@@ -228,6 +231,9 @@ Required permissions in `AndroidManifest.xml`:
 - [ ] Launch app and grant notification permission
 - [ ] Add a new vitals entry
 - [ ] Verify entry appears in list
+- [ ] Long-press an entry to trigger delete dialog
+- [ ] Test Cancel button - entry should remain
+- [ ] Long-press again and confirm Delete - entry should be removed
 - [ ] Wait for notification (or use test interval)
 - [ ] Click notification and verify logging dialog opens
 - [ ] Close and reopen app - verify data persists
@@ -307,6 +313,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🔮 Future Enhancements
 
+- [ ] Edit existing entries
 - [ ] Data export to CSV/PDF
 - [ ] Charts and graphs for vitals trends
 - [ ] Multiple user profiles
@@ -315,6 +322,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [ ] Medication tracking
 - [ ] Pregnancy week calculator
 - [ ] Educational content and tips
+- [ ] Swipe to delete gesture
 
 ---
 
