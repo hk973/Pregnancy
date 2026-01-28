@@ -1,6 +1,7 @@
 package com.hariom.pregnancy.View.UI_module
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -19,10 +21,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.annotation.DrawableRes
 import com.hariom.pregnancy.Entries_model.Entries
+import com.hariom.pregnancy.R
 import com.hariom.pregnancy.ui.theme.ButtonPurple
 import com.hariom.pregnancy.ui.theme.CardPurple
 import java.text.SimpleDateFormat
@@ -61,12 +66,14 @@ fun EntriesItem(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         VitalItem(
-                            icon = "❤",
-                            value = "${entry.heartRate} bpm"
+                            iconRes = R.drawable.heart_rate,
+                            value = "${entry.heartRate} bpm",
+                            modifier = Modifier.weight(1f)
                         )
                         VitalItem(
-                            icon = "🩺",
-                            value = "${entry.systolic}/${entry.diastolic} mmHg"
+                            iconRes = R.drawable.bp,
+                            value = "${entry.systolic}/${entry.diastolic} mmHg",
+                            modifier = Modifier.weight(1f)
                         )
                     }
                     Spacer(modifier = Modifier.height(12.dp))
@@ -75,24 +82,26 @@ fun EntriesItem(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         VitalItem(
-                            icon = "⚖",
-                            value = "${entry.weight} kg"
+                            iconRes = R.drawable.weight,
+                            value = "${entry.weight} kg",
+                            modifier = Modifier.weight(1f)
                         )
                         VitalItem(
-                            icon = "👶",
-                            value = "${entry.babyKicks} kicks"
+                            iconRes = R.drawable.baby,
+                            value = "${entry.babyKicks} kicks",
+                            modifier = Modifier.weight(1f)
                         )
                     }
                 }
             }
             
-            // Date section with purple background
+            // Date section with purple background - left aligned now
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(ButtonPurple)
                     .padding(12.dp),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.CenterEnd
             ) {
                 Text(
                     text = formatTimestamp(entry.timestamp),
@@ -106,22 +115,26 @@ fun EntriesItem(
 }
 
 @Composable
-fun VitalItem(icon: String, value: String) {
+fun VitalItem(@DrawableRes iconRes: Int, value: String, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.padding(vertical = 4.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
     ) {
-        Text(
-            text = icon,
-            fontSize = 20.sp,
-            modifier = Modifier.padding(end = 8.dp)
+        Image(
+            painter = painterResource(id = iconRes),
+            contentDescription = null,
+            modifier = Modifier
+                .size(28.dp)
+                .padding(end = 8.dp)
         )
         Text(
             text = value,
             fontSize = 15.sp,
             fontWeight = FontWeight.Medium,
-            color = Color(0xFF4A4A4A)
+            color = Color(0xFF3F0A71) // updated to #3F0A71
         )
     }
 }
@@ -130,4 +143,3 @@ fun formatTimestamp(timestamp: Long): String {
     val sdf = SimpleDateFormat("EEE, dd MMM yyyy hh:mm a", Locale.ENGLISH)
     return sdf.format(Date(timestamp))
 }
-

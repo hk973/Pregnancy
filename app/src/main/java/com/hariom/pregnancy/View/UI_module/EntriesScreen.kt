@@ -51,7 +51,7 @@ fun EntriesScreen(
                         "Track My Pregnancy",
                         fontSize = 22.sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = Color(0xFF6B4C7A)
+                        color = Color(0xFF5F1C9C)
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

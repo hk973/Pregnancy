@@ -62,7 +62,8 @@ fun AddEntriesDialog(
                     text = "Add Vitals",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF6B4C7A)
+                    color = Color(0xFF3F0A71)
+
                 )
                 
                 Spacer(modifier = Modifier.height(24.dp))

@@ -11,8 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 // Pregnancy App Colors
-val LightPurple = Color(0xFFE8D4F8)
+val LightPurple = Color(0xFFC8ADFC)
 val MediumPurple = Color(0xFFD4B5E8)
 val DarkPurple = Color(0xFF9B6BB8)
-val CardPurple = Color(0xFFE8C8F8)
-val ButtonPurple = Color(0xFF9B5FB8)
+val CardPurple = Color(0xFFEBB9FE)
+val ButtonPurple = Color(0xFF9C4DB9)
